@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body class="skin-default-dark fixed-layout">
+  <br>
+  <div class="container" style="text-align: center;">
+    <mat-form-field appearance="outline"  style="width: 60%;">
+        <mat-label>Ara</mat-label>
+      <input matInput type="text"  placeholder="Aranacak Kelime" [(ngModel)]="searchWord" (keyup.enter)="getGifs()">
+      <button mat-button *ngIf="searchWord" matSuffix mat-icon-button aria-label="Clear" (click)="getGifs()">
+        <mat-icon>search</mat-icon>
+      </button>
+
+    </mat-form-field>
+    <br>
+    <button mat-stroked-button color="primary" (click)="getGifs()">Gif Getir</button>
+  <br>
+  <br>
+  <button mat-fab color="primary" *ngIf="this.gifs!=null" [disabled]="this.endGif" mat-mini-fab aria-label="Example icon-button with a heart icon" style="position: fixed;  margin:  auto; left: 0; right: 0;  bottom: 15px; " (click)="getMoreGifs()">
+      <mat-icon>more_horiz</mat-icon>
+  </button>
+
+</div>
+<div class="frame" #scrollframe>
+    <img *ngFor="let item of this.gifs" src="{{item.images.downsized.url}}">
+  </div><br>
+
+  
+</body>
+
+</html>
